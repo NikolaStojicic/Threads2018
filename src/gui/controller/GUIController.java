@@ -3,6 +3,7 @@ package gui.controller;
 import java.awt.EventQueue;
 
 import gui.MainWindow;
+import music.Singer;
 import test.Test;
 
 public class GUIController {
@@ -30,4 +31,15 @@ public class GUIController {
 		});
 	}
 
+	public static void toggleMichel() {
+		Singer.toggleMichael();
+	}
+
+	public static void toggleBruce() {
+		Singer.toggleBruce();
+	}
+
+	public static void togglePatti() {
+		Singer.togglePatti();
+	}
 }

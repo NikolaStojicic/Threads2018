@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.DefaultCaret;
@@ -12,6 +13,7 @@ import javax.swing.text.DefaultCaret;
 import gui.components.NButton;
 import gui.controller.GUIController;
 import gui.util.MoveMouseListener;
+import music.Singer;
 import test.Test;
 
 import javax.swing.JButton;
@@ -40,8 +42,6 @@ public class MainWindow extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-
-		//////////////////////////////////////////////////////////////
 		MoveMouseListener mml = new MoveMouseListener(contentPane);
 		contentPane.setLayout(null);
 		contentPane.add(getBtnPspng());
@@ -50,7 +50,6 @@ public class MainWindow extends JFrame {
 		contentPane.add(getBtnClose());
 		contentPane.addMouseListener(mml);
 		contentPane.addMouseMotionListener(mml);
-		// contentPane.setBackground(new Color(0, 0, 102));
 		contentPane.setBackground(new Color(44, 66, 81));
 		contentPane.add(getScrollPane());
 		setUndecorated(true);
@@ -60,7 +59,9 @@ public class MainWindow extends JFrame {
 			if (component instanceof NButton)
 				((NButton) component).setGuiImage();
 		}
-		//////////////////////////////////////////////////////////////
+		JOptionPane.showMessageDialog(null,
+				"This application can provoke visual epilepsy, be aware.\nHow to use:\nEvery character represents one thread and sings a line of lyrics, on start everybody are singing, but you can deactivate or activate threads by clicking on character.",
+				"Photosensitive Seizure Warning", JOptionPane.OK_OPTION);
 	}
 
 	private NButton getBtnPspng() {
@@ -68,11 +69,7 @@ public class MainWindow extends JFrame {
 			btnPspng = new NButton("ps_up.png");
 			btnPspng.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if (t.notPlaying) {
-						t.goGoGOO(t.pattiSmith);
-					} else {
-						t.stopStopSTOOP(t.pattiSmith);
-					}
+					GUIController.togglePatti();
 				}
 			});
 			btnPspng.setBounds(259, 37, 133, 160);
@@ -87,11 +84,7 @@ public class MainWindow extends JFrame {
 			btnBspng = new NButton("bs_up.png");
 			btnBspng.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if (t.notPlaying) {
-						t.goGoGOO(t.bruceSpringsteen);
-					} else {
-						t.stopStopSTOOP(t.bruceSpringsteen);
-					}
+					GUIController.toggleBruce();
 				}
 			});
 			btnBspng.setBounds(259, 226, 133, 160);
@@ -104,11 +97,7 @@ public class MainWindow extends JFrame {
 			btnMspng = new NButton("ms_up.png");
 			btnMspng.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if (t.notPlaying) {
-						t.goGoGOO(t.michaelStipe);
-					} else {
-						t.stopStopSTOOP(t.michaelStipe);
-					}
+					GUIController.toggleMichel();
 				}
 			});
 			btnMspng.setBounds(259, 414, 133, 160);

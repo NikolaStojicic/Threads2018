@@ -17,7 +17,6 @@ public class Synchronizer {
 	}
 
 	public synchronized void singFirstVoice(String lyrics, int delay, boolean skip) {
-		System.out.println(1);
 		while (fFlag) {
 			try {
 				wait();
@@ -26,12 +25,10 @@ public class Synchronizer {
 				e.printStackTrace();
 			}
 		}
-		// singCurrent(lyrics, delay, "fFlag");
 		sing(lyrics, delay, "fFlag", skip);
 	}
 
 	public synchronized void singSecondVoice(String lyrics, int delay, boolean skip) {
-		System.out.println(2);
 		while (sFlag) {
 			try {
 				wait();
@@ -40,12 +37,10 @@ public class Synchronizer {
 				e.printStackTrace();
 			}
 		}
-		// singCurrent(lyrics, delay, "sFlag");
 		sing(lyrics, delay, "sFlag", skip);
 	}
 
 	public synchronized void singThirdVoice(String lyrics, int delay, boolean skip) {
-		System.out.println(4);
 		while (tFlag) {
 			try {
 				wait();
@@ -54,7 +49,6 @@ public class Synchronizer {
 				e.printStackTrace();
 			}
 		}
-		// singCurrent(lyrics, delay, "tFlag");
 		sing(lyrics, delay, "tFlag", skip);
 	}
 
@@ -71,34 +65,19 @@ public class Synchronizer {
 		}
 	}
 
-	private synchronized void singCurrent(String lyrics, int delay, String flag) {
-		try {
-			wait(delay);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(lyrics);
-		toggleFlag(flag);
-		notifyAll();
-	}
-
 	private synchronized void sing(String lyrics, int delay, String flag, boolean skip) {
 		if (!skip) {
-			System.out.println(lyrics);
+			// System.out.println(lyrics);
 			JTextArea tf = MainWindow.getTextArea();
 			tf.setText(tf.getText() + lyrics + "\n");
 		} else {
-			try {
-				wait(50);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			toggleFlag(flag);
-			notifyAll();
+			pause(50, flag);
 			return;
 		}
+		pause(delay, flag);
+	}
+
+	private void pause(int delay, String flag) {
 		try {
 			wait(delay);
 		} catch (InterruptedException e) {

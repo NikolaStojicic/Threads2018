@@ -18,7 +18,9 @@ public class Test {
 	public Singer pattiSmith;
 	public Singer bruceSpringsteen;
 	public Singer michaelStipe;
-	public boolean notPlaying = false;
+	public boolean notPlayingP = false;
+	public boolean notPlayingB = false;
+	public boolean notPlayingM = false;
 
 	public void initializeSingingInThreads() {
 		String lyrics1 = "Because the night";
@@ -32,20 +34,9 @@ public class Test {
 		Performance secondVoicePerformance = new Performance(lyrics2, 1500);
 		Performance thirdVoicePerformance = new Performance(lyrics3, 1500);
 
-		pattiSmith = new Singer("Patti Smith", Voice.FIRST, firstVoicePerformance, stopIt, synch, notPlaying);
-		bruceSpringsteen = new Singer("Bruce Springsteen", Voice.SECOND, secondVoicePerformance, stopIt, synch,
-				notPlaying);
-		michaelStipe = new Singer("Michael Stipe", Voice.THIRD, thirdVoicePerformance, stopIt, synch, notPlaying);
-	}
-
-	public void goGoGOO(Singer singer) {
-		notPlaying = false;
-		singer.setNotPlaying(notPlaying);
-	}
-
-	public void stopStopSTOOP(Singer singer) {
-		notPlaying = true;
-		singer.setNotPlaying(notPlaying);
+		pattiSmith = new Singer("Patti Smith", Voice.FIRST, firstVoicePerformance, stopIt, synch);
+		bruceSpringsteen = new Singer("Bruce Springsteen", Voice.SECOND, secondVoicePerformance, stopIt, synch);
+		michaelStipe = new Singer("Michael Stipe", Voice.THIRD, thirdVoicePerformance, stopIt, synch);
 	}
 
 	public void simpleDelay() {

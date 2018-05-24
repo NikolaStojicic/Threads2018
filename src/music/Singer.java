@@ -10,37 +10,37 @@ public class Singer extends Thread {
 	private Voice voice;
 	private Performance performance;
 
-	private boolean notPlaying;
-
-	public boolean isNotPlaying() {
-		return notPlaying;
-	}
-
-	public void setNotPlaying(boolean notPlaying) {
-		this.notPlaying = notPlaying;
-	}
-
 	private boolean stopIt;
 	private Synchronizer synch;
+	public static boolean notPlayingP, notPlayingB, notPlayingM;
 
-	public Singer(String singerName, Voice voice, Performance performance, boolean stopIt, Synchronizer synch,
-			boolean notPlaying) {
+	public Singer(String singerName, Voice voice, Performance performance, boolean stopIt, Synchronizer synch) {
 		super();
 		this.singerName = singerName;
 		this.voice = voice;
 		this.performance = performance;
 		this.stopIt = stopIt;
 		this.synch = synch;
-		this.notPlaying = notPlaying;
 	}
 
-	public Singer(String singerName, Voice voice, Performance performance, boolean stopIt, boolean notPlaying) {
+	public static void togglePatti() {
+		notPlayingP = !notPlayingP;
+	}
+
+	public static void toggleBruce() {
+		notPlayingB = !notPlayingB;
+	}
+
+	public static void toggleMichael() {
+		notPlayingM = !notPlayingM;
+	}
+
+	public Singer(String singerName, Voice voice, Performance performance, boolean stopIt) {
 		super();
 		this.singerName = singerName;
 		this.voice = voice;
 		this.performance = performance;
 		this.stopIt = stopIt;
-		this.notPlaying = notPlaying;
 	}
 
 	public Singer() {
@@ -53,15 +53,13 @@ public class Singer extends Thread {
 	}
 
 	private synchronized void sing() {
-		if (notPlaying)
-			return;
 		while (!stopIt) {
 			if (this.voice == Voice.FIRST) {
-				this.synch.singFirstVoice(performance.getLyrics(), performance.getDelay(), notPlaying);
+				this.synch.singFirstVoice(performance.getLyrics(), performance.getDelay(), notPlayingP);
 			} else if (this.voice == Voice.SECOND) {
-				this.synch.singSecondVoice(performance.getLyrics(), performance.getDelay(), notPlaying);
+				this.synch.singSecondVoice(performance.getLyrics(), performance.getDelay(), notPlayingB);
 			} else {
-				this.synch.singThirdVoice(performance.getLyrics(), performance.getDelay(), notPlaying);
+				this.synch.singThirdVoice(performance.getLyrics(), performance.getDelay(), notPlayingM);
 			}
 		}
 	}
