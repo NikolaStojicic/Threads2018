@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -13,7 +12,6 @@ import javax.swing.text.DefaultCaret;
 import gui.components.NButton;
 import gui.controller.GUIController;
 import gui.util.MoveMouseListener;
-import music.Singer;
 import test.Test;
 
 import javax.swing.JButton;
