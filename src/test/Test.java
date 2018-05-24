@@ -17,19 +17,35 @@ public class Test {
 
 	public Singer pattiSmith;
 	public Singer bruceSpringsteen;
+	public Singer michaelStipe;
+	public boolean notPlaying = false;
 
 	public void initializeSingingInThreads() {
 		String lyrics1 = "Because the night";
 		String lyrics2 = "Belongs to lovers";
+		String lyrics3 = "Because the night belongs to us";
 
 		boolean stopIt = false;
-		Synchronizer synch = new Synchronizer(true);
+		Synchronizer synch = new Synchronizer();
 
 		Performance firstVoicePerformance = new Performance(lyrics1, 1500);
 		Performance secondVoicePerformance = new Performance(lyrics2, 1500);
+		Performance thirdVoicePerformance = new Performance(lyrics3, 1500);
 
-		pattiSmith = new Singer("Patti Smith", Voice.FIRST, firstVoicePerformance, stopIt, synch);
-		bruceSpringsteen = new Singer("Bruce Springsteen", Voice.SECOND, secondVoicePerformance, stopIt, synch);
+		pattiSmith = new Singer("Patti Smith", Voice.FIRST, firstVoicePerformance, stopIt, synch, notPlaying);
+		bruceSpringsteen = new Singer("Bruce Springsteen", Voice.SECOND, secondVoicePerformance, stopIt, synch,
+				notPlaying);
+		michaelStipe = new Singer("Michael Stipe", Voice.THIRD, thirdVoicePerformance, stopIt, synch, notPlaying);
+	}
+
+	public void goGoGOO(Singer singer) {
+		notPlaying = false;
+		singer.setNotPlaying(notPlaying);
+	}
+
+	public void stopStopSTOOP(Singer singer) {
+		notPlaying = true;
+		singer.setNotPlaying(notPlaying);
 	}
 
 	public void simpleDelay() {

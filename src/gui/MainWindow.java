@@ -7,10 +7,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.DefaultCaret;
 
 import gui.components.NButton;
 import gui.controller.GUIController;
 import gui.util.MoveMouseListener;
+import test.Test;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -65,7 +68,11 @@ public class MainWindow extends JFrame {
 			btnPspng = new NButton("ps_up.png");
 			btnPspng.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					GUIController.toggleSinger(GUIController.t.pattiSmith);
+					if (t.notPlaying) {
+						t.goGoGOO(t.pattiSmith);
+					} else {
+						t.stopStopSTOOP(t.pattiSmith);
+					}
 				}
 			});
 			btnPspng.setBounds(259, 37, 133, 160);
@@ -73,12 +80,18 @@ public class MainWindow extends JFrame {
 		return btnPspng;
 	}
 
+	Test t = GUIController.t;
+
 	private NButton getBtnBspng() {
 		if (btnBspng == null) {
 			btnBspng = new NButton("bs_up.png");
 			btnBspng.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					GUIController.toggleSinger(GUIController.t.bruceSpringsteen);
+					if (t.notPlaying) {
+						t.goGoGOO(t.bruceSpringsteen);
+					} else {
+						t.stopStopSTOOP(t.bruceSpringsteen);
+					}
 				}
 			});
 			btnBspng.setBounds(259, 226, 133, 160);
@@ -89,6 +102,15 @@ public class MainWindow extends JFrame {
 	private JButton getBtnMspng() {
 		if (btnMspng == null) {
 			btnMspng = new NButton("ms_up.png");
+			btnMspng.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					if (t.notPlaying) {
+						t.goGoGOO(t.michaelStipe);
+					} else {
+						t.stopStopSTOOP(t.michaelStipe);
+					}
+				}
+			});
 			btnMspng.setBounds(259, 414, 133, 160);
 		}
 		return btnMspng;
@@ -111,6 +133,8 @@ public class MainWindow extends JFrame {
 		if (textArea == null) {
 			textArea = new JTextArea();
 			textArea.setEditable(false);
+			DefaultCaret caret = (DefaultCaret) textArea.getCaret();
+			caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		}
 		return textArea;
 	}

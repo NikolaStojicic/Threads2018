@@ -21,9 +21,9 @@ public class NButton extends JButton {
 	private static final String DOWN_PNG = "_down.png";
 	private static final String UP_PNG = "_up.png";
 	private static final long serialVersionUID = 1L;
-	private Color C_PRESSED = new Color(26, 147, 111);
+	private Color C_PRESSED = new Color(44, 66, 81);
 	private Color C_ROLLOVER = new Color(0, 55, 95);
-	private Color C_UP = new Color(44, 66, 81);
+	private Color C_UP = new Color(26, 147, 111);
 
 	private String nameofComponent;
 
