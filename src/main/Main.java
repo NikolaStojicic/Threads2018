@@ -14,7 +14,7 @@ public class Main {
 //        t.waitDelay();
 //        t.loopDelay();
 //        t.threadWaitDelay();
-        t.testSingInThreads();
+       // t.testSingInThreads();
     }
 
 }
